@@ -10,3 +10,6 @@ application/logs/
 application/cache/
 /public/.htaccess
 .idea/*
+application/views/smarty/cache/
+application/views/smarty/templates_c/
+

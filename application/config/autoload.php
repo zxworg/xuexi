@@ -58,7 +58,7 @@ $autoload['packages'] = array(APPPATH.'third_party');
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('eloquent');
+$autoload['libraries'] = array('eloquent','smartyview');
 
 /*
 | -------------------------------------------------------------------
@@ -103,7 +103,7 @@ $autoload['helper'] = array();
 | config files.  Otherwise, leave it blank.
 |
 */
-$autoload['config'] = array('eloquent');
+$autoload['config'] = array('eloquent','smarty');
 
 /*
 | -------------------------------------------------------------------
