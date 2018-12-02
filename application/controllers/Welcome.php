@@ -20,6 +20,6 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-        $this->smarty->display('welcome_message.tpl');
+        $this->smarty->display('home/welcome_message.tpl');
 	}
 }
