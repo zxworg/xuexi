@@ -12,6 +12,7 @@
 	},
 	"require": {
 		"php": ">=7.0",
+		"firebase/php-jwt": "~5.0",
 		"illuminate/database": "~5.5.40",
 		"illuminate/events": "~5.5.40"
 	},
