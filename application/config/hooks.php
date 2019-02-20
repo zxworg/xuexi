@@ -17,3 +17,17 @@ $hook['pre_system'] = array(
     'filename' => 'PreHook.php',
     'filepath' => 'hooks',
 );
+
+$hook['post_controller_constructor'] = array(
+    'class'    => 'AuthHook',
+    'function' => 'Auth',
+    'filename' => 'AuthHook.php',
+    'filepath' => 'hooks',
+);
+
+//$hook['pre_controller'][] = array(
+//    'class'    => 'ExceptionHook',
+//    'function' => 'SetExceptionHandler',
+//    'filename' => 'ExceptionHook.php',
+//    'filepath' => 'hooks'
+//);
