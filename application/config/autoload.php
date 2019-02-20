@@ -103,7 +103,7 @@ $autoload['helper'] = array();
 | config files.  Otherwise, leave it blank.
 |
 */
-$autoload['config'] = array('eloquent','smarty');
+$autoload['config'] = array('eloquent','smarty','api_code');
 
 /*
 | -------------------------------------------------------------------

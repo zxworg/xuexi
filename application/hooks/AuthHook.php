@@ -16,6 +16,9 @@ class AuthHook {
     }
 
     public function Auth(){
-
+        $authArr = [
+            'mini/login/gettoken',
+        ];
     }
+
 }
