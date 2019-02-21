@@ -9,7 +9,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * Describe:
  */
 class Basemodel extends Model {
-
-    use SoftDeletes;
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+    }
+//    use SoftDeletes;
 
 }

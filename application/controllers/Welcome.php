@@ -21,6 +21,14 @@ class Welcome extends MY_Controller {
 	public function index()
 	{
 //        $this->smarty->display('home/welcome_message.tpl');
-	    $this->api_res(0);
+//	    $this->api_res(0);
+//	    $this->load->library("m_jwt");
+//	    $s = $this->m_jwt->generateSignature("111","Get","/welcome",$_GET);
+//	    var_dump($s);
+//	    echo 1;
+        $this->load->model("testmodel");
+        $a = Testmodel::Find(1);
+        $this->api_res(0,$a);
 	}
+
 }
