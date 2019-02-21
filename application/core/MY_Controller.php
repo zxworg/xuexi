@@ -49,11 +49,19 @@ class MY_Controller extends CI_Controller {
         if ($data) {
             $this->output
                 ->set_content_type('application/json')
-                ->set_output(json_encode(array('rescode' => $code, 'resmsg' => $msg, 'data' => $data)));
+                ->set_output(json_encode(array(
+                    'code' => $code,
+                    'error_message' => $msg,
+                    'message' => $data ,
+                    'request_id' => 'request_id')));
         } else {
             $this->output
                 ->set_content_type('application/json')
-                ->set_output(json_encode(array('rescode' => $code, 'resmsg' => $msg, 'data' => [])));
+                ->set_output(json_encode(array(
+                    'code' => $code,
+                    'error_message' => $msg,
+                    'message' => $data ,
+                    'request_id' => 'request_id')));;
         }
     }
 
