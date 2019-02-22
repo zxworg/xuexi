@@ -13,14 +13,18 @@ class M_jwt{
         $access_key  = $veData["params"]["access_key"];
         $timestamp = $veData["params"]["timestamp"];
         if ($gToken != $token){
-            return false;
+            return 403001;
         }
         $current = microtime();
-        if ($current>($timestamp+10*60*1000)){
-            return false;
+        if ($current > ($timestamp + 10*60*1000)){
+            return 403002;
         }
-        return true;
+        IF (ACCESS_KEY!=$access_key) {
+            return 403003;
+        }
+        return 0;
     }
+
 
 //  构造加密源串
     private function generateSignature($secret,$method,$uri,$params){

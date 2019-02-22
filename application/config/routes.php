@@ -54,3 +54,11 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route["welcomee"]["POST"] = "welcome/index";
+
+// v1
+$route["/v1/api/items/(:num)"]["POST"] = "api/singlepush/$1";
+$route["/v1/api/items"]["POST"] = "api/batchpush";
+$route["/v1/api/items/(:num)"]["DELETE"] = "api/delete/$1";
+$route["/v1/api/items/(:num)/actions/online"]["PATCH"] = "api/online/$1";
+$route["/v1/api/items/(:num)/actions/offline"]["PATCH"] = "api/offline/$1";
+

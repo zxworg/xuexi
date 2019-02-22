@@ -42,7 +42,7 @@ class MY_Controller extends CI_Controller {
                 $this->output->set_status_header(500);
                 break;
         }
-
+        $request_id = $this->CI->input->get_post("request_id",true);
         if (empty($msg)){
             $msg = $this->config->item('api_code')[$code];
         }
@@ -53,7 +53,7 @@ class MY_Controller extends CI_Controller {
                     'code' => $code,
                     'error_message' => $msg,
                     'message' => $data ,
-                    'request_id' => 'request_id')));
+                    'request_id' => $request_id)));
         } else {
             $this->output
                 ->set_content_type('application/json')
@@ -61,7 +61,7 @@ class MY_Controller extends CI_Controller {
                     'code' => $code,
                     'error_message' => $msg,
                     'message' => $data ,
-                    'request_id' => 'request_id')));;
+                    'request_id' => $request_id)));;
         }
     }
 
