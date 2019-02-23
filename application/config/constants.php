@@ -96,3 +96,4 @@ define('IS_GET',strtolower($_SERVER["REQUEST_METHOD"]) == 'get');//判断是否�
 define('IS_AJAX',isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest');//判断是否是ajax请求
 // 定义access_secret
 define("ACCESS_SECRET","ISADLFAKJUSUSECRET");
+define("ACCESS_KEY","JKSAHFKDASHJK");
