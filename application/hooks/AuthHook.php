@@ -28,6 +28,7 @@ class AuthHook {
         $this->CI->load->helper("url");
         $uri = uri_string();
         $writes = $this->writeList();
+//        ToDo 记录有效的request
         if (in_array($uri,$writes)){
             return;
         }
@@ -44,6 +45,16 @@ class AuthHook {
             exit;
         }
         $secret = ACCESS_SECRET;
+        if ($get["access_key"] != $secret){
+            headers_sent() or header('HTTP/1.1 401 Forbidden');
+            headers_sent() or header("Content-Type:application/json;charset=UTF-8");
+            echo json_encode(array(
+                'code' => 403003,
+                'error_message' => '非法的客户密钥key(access_key)',
+                "message" => [],
+                "request_id" => $request_id));
+            exit;
+        }
         $method = $_SERVER["REQUEST_METHOD"];
         $veData = [
             "secret" => $secret,

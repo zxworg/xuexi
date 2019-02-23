@@ -61,4 +61,5 @@ $route["/v1/api/items"]["POST"] = "api/batchpush";
 $route["/v1/api/items/(:num)"]["DELETE"] = "api/delete/$1";
 $route["/v1/api/items/(:num)/actions/online"]["PATCH"] = "api/online/$1";
 $route["/v1/api/items/(:num)/actions/offline"]["PATCH"] = "api/offline/$1";
+$route["/v1/api/items/(:num)"]["GET"] = "api/get/$1";
 
