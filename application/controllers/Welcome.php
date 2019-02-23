@@ -29,6 +29,23 @@ class Welcome extends MY_Controller {
         $this->load->model("testmodel");
         $a = Testmodel::Find(1);
         $this->api_res(0,$a);
+
+        $field = ["authors"];
+        if (!$this->validationText($this->validate())){
+            $this->api_res(400001,$this->form_first_error($field));
+            return;
+        }
+        $this->api_res(0);
 	}
+
+	private function validate(){
+	    return array(
+	        array(
+	            "field"=>"authors[]",
+                "label"=>"authors",
+                "rules"=>"required|trim"
+            )
+        );
+    }
 
 }

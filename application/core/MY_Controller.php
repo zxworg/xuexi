@@ -3,39 +3,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
  * Author:
- * Date:        2018/4/8
+ * Date:
  * Time:        09:11
  * Describe:    授权登录token验证Hook
  */
 class MY_Controller extends CI_Controller {
+    private $CI;
+
     public function __construct() {
         parent::__construct();
+        $this->CI = &get_instance();
         $this->output->set_content_type('application/json');
     }
 
     //API返回统一方法
 
-    public function api_res($code, $data = false, $msg = '') {
+    public function api_res($code, $data = [], $msg = '') {
         switch ($code) {
             case 0:
                 break;
-            case 1002:
-            case 1004:
-            case 1005:
-            case 1016:
-            case 10002:
-            case 10003:
-            case 10020:
-            case 10031:
-            case 10032:
+            case 400001:
                 $this->output->set_status_header(400);
                 break;
-            case 1001:
-            case 1006:
-                $this->output->set_status_header(401);
-                break;
-            case 1011:
-            case 10011:
+            case 403001:
+            case 403002:
+            case 403003:
                 $this->output->set_status_header(403);
                 break;
             default:
