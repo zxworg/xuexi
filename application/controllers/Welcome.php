@@ -20,6 +20,8 @@ class Welcome extends MY_Controller {
 	 */
 	public function index()
 	{
+	    log_message("debug","测试log");
+//	    echo 1;exit;
 //        $this->smarty->display('home/welcome_message.tpl');
 //	    $this->api_res(0);
 //	    $this->load->library("m_jwt");
