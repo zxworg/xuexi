@@ -4,7 +4,7 @@ require_once APPPATH.'third_party/smarty/Smarty.class.php';
 require_once APPPATH.'third_party/smarty/Autoloader.php';
 
 /**
- * Author:      zjh<401967974@qq.com>
+ * Author:
  * Date:        2018/12/1 0001
  * Time:        14:57
  * Describe:

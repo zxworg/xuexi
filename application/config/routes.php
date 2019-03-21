@@ -53,9 +53,10 @@ $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route["welcomee"]["POST"] = "welcome/index";
+$route["welcomee/(:num)"]["POST"] = "welcome/index/$1";
 
 // v1
+// 单条推送
 $route["/v1/api/items/(:num)"]["POST"] = "api/singlepush/$1";
 $route["/v1/api/items"]["POST"] = "api/batchpush";
 $route["/v1/api/items/(:num)"]["DELETE"] = "api/delete/$1";

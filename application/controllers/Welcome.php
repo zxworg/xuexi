@@ -18,8 +18,9 @@ class Welcome extends MY_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function index()
+	public function index($b)
 	{
+	    echo $b;
 	    log_message("debug","测试log");
 //	    echo 1;exit;
 //        $this->smarty->display('home/welcome_message.tpl');
