@@ -8,6 +8,7 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 /tests/results/
 application/logs/
 application/cache/
+application/config/production/
 /public/.htaccess
 .idea/*
 application/views/smarty/cache/
