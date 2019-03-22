@@ -71,6 +71,71 @@ class Api extends MY_Controller{
     private function newContent($article, $catalog, $input){
         $content = new Zccontentmodel();
 
+//        $content->ID = "";
+        $content->SiteID = $catalog->SiteID;
+        $content->CatalogID = $catalog->ID;
+        $content->CatalogInnerCode = $catalog->InnerCode;
+        $content->BranchInnerCode = $catalog->BranchInnerCode;
+        $content->ContentTypeID = "";
+        $content->Title = "";
+        $content->SubTitle = "";
+        $content->ShortTitle = "";
+        $content->TitleStyle = "";
+        $content->ShortTitleStyle = "";
+        $content->Author = "";
+        $content->Editor = "";
+        $content->Summary = "";
+        $content->LinkFlag = "";
+        $content->Attribute = "";
+        $content->RedirectURL = "";
+        $content->StaticFileName = "";
+        $content->Status = "";
+        $content->TopFlag = "";
+        $content->TopDate = "";
+        $content->TemplateFlag = "";
+        $content->Template = "";
+        $content->OrderFlag = "";
+        $content->ReferName = "";
+        $content->ReferURL = "";
+        $content->Keyword = "";
+        $content->RelativeContent = "";
+        $content->RecommendBlock = "";
+        $content->CopyType = "";
+        $content->CopyID = "";
+        $content->HitCount = "";
+        $content->StickTime = "";
+        $content->PublishFlag = "";
+        $content->Priority = "";
+        $content->LockUser = "";
+        $content->PublishDate = "";
+        $content->DownlineDate = "";
+        $content->ArchiveDate = "";
+        $content->LogoFile = "";
+        $content->Tag = "";
+        $content->Source = "";
+        $content->Weight = "";
+        $content->ClusterSource = "";
+        $content->ClusterTarget = "";
+        $content->ContributeFlag = "";
+        $content->ContributeUID = "";
+        $content->ConfigProps = "";
+        $content->Prop1 = "";
+        $content->Prop2 = "";
+        $content->Prop3 = "";
+        $content->Prop4 = "";
+        $content->AddUser = "";
+        $content->AddTime = "";
+        $content->ModifyUser = "";
+        $content->ModifyTime = "";
+        $content->TopCatalog = "";
+        $content->IsLock = "";
+        $content->SourceURL = "";
+        $content->PlatformAttribute = "";
+        $content->SourceTitle = "";
+
+    }
+
+    private function transform($content){
         $content->ID = "";
         $content->SiteID = "";
         $content->CatalogID = "";
@@ -132,7 +197,6 @@ class Api extends MY_Controller{
         $content->SourceURL = "";
         $content->PlatformAttribute = "";
         $content->SourceTitle = "";
-
     }
 
     /**
@@ -283,7 +347,7 @@ class Api extends MY_Controller{
         return array(
             array(
                 'field' => 'item_type',
-                'label' => 'item_typeitem_type',
+                'label' => 'item_type',
                 'rules' => 'trim|integer|in_list[0,1,1001,2,2001,3]',
             ),
             array(

@@ -8,5 +8,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
 
 class Zcsitemodel extends Basemodel{
+
+    protected $primaryKey = "ID";
     protected $table = "zcsite";
 }

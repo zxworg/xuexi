@@ -30,8 +30,10 @@ class Welcome extends MY_Controller {
 //	    var_dump($s);
 //	    echo 1;
         $this->load->model("testmodel");
-        $a = Testmodel::Find(1);
+        $this->load->model("zcarticlebodymodel");
+        $a = Zcarticlebodymodel::Find(1);
         $this->api_res(0,$a);
+        return
 
         $field = ["authors"];
         if (!$this->validationText($this->validate())){

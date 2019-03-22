@@ -11,5 +11,6 @@ class Zccatalogmodel extends Basemodel{
     {
         parent::__construct($attributes);
     }
+    protected $primaryKey = "ID";
     protected $table = "zccatalog";
 }

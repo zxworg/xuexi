@@ -25,6 +25,8 @@ class AuthHook {
     }
 
     public function Auth(){
+        return
+
         $this->CI->load->helper("url");
         $uri = uri_string();
         $writes = $this->writeList();

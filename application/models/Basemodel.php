@@ -13,6 +13,8 @@ class Basemodel extends Model {
     {
         parent::__construct($attributes);
     }
+
+    protected $hidden = ["ID"];
 //    use SoftDeletes;
 
 }

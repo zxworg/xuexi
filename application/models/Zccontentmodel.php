@@ -9,5 +9,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Zccontentmodel extends Basemodel{
 
+    protected $primaryKey = "ID";
     protected $table = "zccontent";
 }
