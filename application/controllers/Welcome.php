@@ -20,6 +20,9 @@ class Welcome extends MY_Controller {
 	 */
 	public function index($b)
 	{
+//	    $input = $this->input->post(null,true);
+//	    $input = $this->input->raw_input_stream;
+	    var_dump($this->request);exit;
 	    echo $b;
 	    log_message("debug","测试log");
 //	    echo 1;exit;

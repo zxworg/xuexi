@@ -11,4 +11,8 @@ class Zccontentmodel extends Basemodel{
 
     protected $primaryKey = "ID";
     protected $table = "zccontent";
+
+    const TypeArticle = "Article";
+    const TypeImages = "ImagesGroup";
+    const TypeVideo = "Video";
 }

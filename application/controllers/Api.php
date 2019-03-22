@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 use Illuminate\Database\Capsule\Manager as DB;
+use Carbon\Carbon;
 /**
  * Author:
  * Date:        2019/2/22 0022
@@ -76,43 +77,50 @@ class Api extends MY_Controller{
         $content->CatalogID = $catalog->ID;
         $content->CatalogInnerCode = $catalog->InnerCode;
         $content->BranchInnerCode = $catalog->BranchInnerCode;
-        $content->ContentTypeID = "";
-        $content->Title = "";
-        $content->SubTitle = "";
-        $content->ShortTitle = "";
+        $content->ContentTypeID = Zccontentmodel::TypeArticle;
+        $content->Title = $input["title"];
+        $content->SubTitle = $input["sub_title"];
+        $content->ShortTitle = $input["head_title"];
         $content->TitleStyle = "";
         $content->ShortTitleStyle = "";
-        $content->Author = "";
+        // ? TODO Array conversion string ?
+        $content->Author = $input["authors"];
         $content->Editor = "";
-        $content->Summary = "";
-        $content->LinkFlag = "";
+        $content->Summary = $input["summary"];
         $content->Attribute = "";
-        $content->RedirectURL = "";
+        if (!empty($input["url"])){
+            $content->LinkFlag = "Y";
+            $content->RedirectURL = $input["url"];
+        }
         $content->StaticFileName = "";
-        $content->Status = "";
-        $content->TopFlag = "";
-        $content->TopDate = "";
-        $content->TemplateFlag = "";
+        // ? TODO = 30 ?
+        $content->Status = 30;
+
+        $content->TopFlag = 0;
+        $content->TopDate = null;
+        $content->TemplateFlag = "N";
         $content->Template = "";
+        // ? TODO ?
         $content->OrderFlag = "";
         $content->ReferName = "";
         $content->ReferURL = "";
         $content->Keyword = "";
         $content->RelativeContent = "";
         $content->RecommendBlock = "";
-        $content->CopyType = "";
-        $content->CopyID = "";
+        $content->CopyType = 0;
+        $content->CopyID = 0;
         $content->HitCount = "";
         $content->StickTime = "";
         $content->PublishFlag = "";
         $content->Priority = "";
         $content->LockUser = "";
-        $content->PublishDate = "";
+        $content->PublishDate = $input["publish_time"];
         $content->DownlineDate = "";
         $content->ArchiveDate = "";
         $content->LogoFile = "";
-        $content->Tag = "";
-        $content->Source = "";
+        // ? TODO Array conversion string ?
+        $content->Tag = $input["tags"];
+        $content->Source = $input["source"];
         $content->Weight = "";
         $content->ClusterSource = "";
         $content->ClusterTarget = "";
@@ -124,15 +132,15 @@ class Api extends MY_Controller{
         $content->Prop3 = "";
         $content->Prop4 = "";
         $content->AddUser = "";
-        $content->AddTime = "";
+        $content->AddTime = Carbon::now()->toDateTimeString();
         $content->ModifyUser = "";
-        $content->ModifyTime = "";
+        $content->ModifyTime = $input["update_time"];
         $content->TopCatalog = "";
-        $content->IsLock = "";
-        $content->SourceURL = "";
-        $content->PlatformAttribute = "";
-        $content->SourceTitle = "";
-
+        $content->IsLock = null;
+        $content->SourceURL = null;
+        $content->PlatformAttribute = 1;
+        $content->SourceTitle = null;
+        $content->save();
     }
 
     private function transform($content){
