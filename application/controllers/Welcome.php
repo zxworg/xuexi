@@ -18,8 +18,14 @@ class Welcome extends MY_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function index()
+	public function index($b)
 	{
+//	    $input = $this->input->post(null,true);
+//	    $input = $this->input->raw_input_stream;
+	    var_dump($this->request);exit;
+	    echo $b;
+	    log_message("debug","测试log");
+//	    echo 1;exit;
 //        $this->smarty->display('home/welcome_message.tpl');
 //	    $this->api_res(0);
 //	    $this->load->library("m_jwt");
@@ -27,8 +33,10 @@ class Welcome extends MY_Controller {
 //	    var_dump($s);
 //	    echo 1;
         $this->load->model("testmodel");
-        $a = Testmodel::Find(1);
+        $this->load->model("zcarticlebodymodel");
+        $a = Zcarticlebodymodel::Find(1);
         $this->api_res(0,$a);
+        return
 
         $field = ["authors"];
         if (!$this->validationText($this->validate())){

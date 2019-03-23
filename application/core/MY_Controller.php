@@ -14,6 +14,8 @@ class MY_Controller extends CI_Controller {
         parent::__construct();
         $this->CI = &get_instance();
         $this->output->set_content_type('application/json');
+        $input = $this->input->raw_input_stream;
+        $this->CI->request = json_decode($input,true);
     }
 
     //API返回统一方法

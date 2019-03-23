@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 /**
- * Author:      zjh<401967974@qq.com>
+ * Author:
  * Date:        2018/12/1 0001
  * Time:        10:30
  * Describe:

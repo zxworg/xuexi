@@ -1,8 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 use Illuminate\Database\Capsule\Manager as DB;
+use Carbon\Carbon;
 /**
- * Author:      zjh<401967974@qq.com>
+ * Author:
  * Date:        2019/2/22 0022
  * Time:        9:52
  * Describe:
@@ -18,20 +19,215 @@ class Api extends MY_Controller{
      * SinglePush 单条推送
      */
     public function SinglePush($item_id){
-        $post = $this->input->post(null,true);
-       if (!$this->validatePush($post)) {
+        $input = $this->input->post(null,true);
+        if (!$this->validatePush($input)) {
            return;
-       }
-        try{
-            DB::beginTransaction();
+        }
+//            $articleBody = Zcarticlebodymodel::find($item_id);
+//            if (!empty($articleBody)){
+//                 如果存在则更新
+//            } else {
+//                 如果不存在则创建
+//            }
+        if ($input["item_type"] == 0) {
+            if (empty($input["content"])) {
+                $this->api_res(40001,"未填写正文内容");
+                return;
+            }
+            $article = $this->newArticle($input);
+            $this->api_res(0,$article);
+        }
 
+    }
+
+    /**
+     * @param $input
+     * 创建稿件
+     */
+    private function newArticle($input){
+        try {
+            DB::beginTransaction();
+            $catalog = $this->getCatalogByName($input["columns"]);
+            if (empty($catalog)) {
+                DB::rollBack();
+                return false;
+            }
+            $article = $this->newArticleBody($input);
+            $content = $this->newContent($article,$catalog,$input);
 
             DB::commit();
         }catch (Exception $e){
             DB::rollBack();
             throw $e;
         }
+        return true;
+    }
 
+    /**
+     * @param $article
+     * @param $catalog
+     * @param $input
+     * 创建文章内容
+     */
+    private function newContent($article, $catalog, $input){
+        $content = new Zccontentmodel();
+
+//        $content->ID = "";
+        $content->SiteID = $catalog->SiteID;
+        $content->CatalogID = $catalog->ID;
+        $content->CatalogInnerCode = $catalog->InnerCode;
+        $content->BranchInnerCode = $catalog->BranchInnerCode;
+        $content->ContentTypeID = Zccontentmodel::TypeArticle;
+        $content->Title = $input["title"];
+        $content->SubTitle = $input["sub_title"];
+        $content->ShortTitle = $input["head_title"];
+        $content->TitleStyle = "";
+        $content->ShortTitleStyle = "";
+        // ? TODO Array conversion string ?
+        $content->Author = $input["authors"];
+        $content->Editor = "";
+        $content->Summary = $input["summary"];
+        $content->Attribute = "";
+        if (!empty($input["url"])){
+            $content->LinkFlag = "Y";
+            $content->RedirectURL = $input["url"];
+        }
+        $content->StaticFileName = "";
+        // ? TODO = 30 ?
+        $content->Status = 30;
+
+        $content->TopFlag = 0;
+        $content->TopDate = null;
+        $content->TemplateFlag = "N";
+        $content->Template = "";
+        // ? TODO ?
+        $content->OrderFlag = "";
+        $content->ReferName = "";
+        $content->ReferURL = "";
+        $content->Keyword = "";
+        $content->RelativeContent = "";
+        $content->RecommendBlock = "";
+        $content->CopyType = 0;
+        $content->CopyID = 0;
+        $content->HitCount = "";
+        $content->StickTime = "";
+        $content->PublishFlag = "";
+        $content->Priority = "";
+        $content->LockUser = "";
+        $content->PublishDate = $input["publish_time"];
+        $content->DownlineDate = "";
+        $content->ArchiveDate = "";
+        $content->LogoFile = "";
+        // ? TODO Array conversion string ?
+        $content->Tag = $input["tags"];
+        $content->Source = $input["source"];
+        $content->Weight = "";
+        $content->ClusterSource = "";
+        $content->ClusterTarget = "";
+        $content->ContributeFlag = "";
+        $content->ContributeUID = "";
+        $content->ConfigProps = "";
+        $content->Prop1 = "";
+        $content->Prop2 = "";
+        $content->Prop3 = "";
+        $content->Prop4 = "";
+        $content->AddUser = "";
+        $content->AddTime = Carbon::now()->toDateTimeString();
+        $content->ModifyUser = "";
+        $content->ModifyTime = $input["update_time"];
+        $content->TopCatalog = "";
+        $content->IsLock = null;
+        $content->SourceURL = null;
+        $content->PlatformAttribute = 1;
+        $content->SourceTitle = null;
+        $content->save();
+    }
+
+    private function transform($content){
+        $content->ID = "";
+        $content->SiteID = "";
+        $content->CatalogID = "";
+        $content->CatalogInnerCode = "";
+        $content->BranchInnerCode = "";
+        $content->ContentTypeID = "";
+        $content->Title = "";
+        $content->SubTitle = "";
+        $content->ShortTitle = "";
+        $content->TitleStyle = "";
+        $content->ShortTitleStyle = "";
+        $content->Author = "";
+        $content->Editor = "";
+        $content->Summary = "";
+        $content->LinkFlag = "";
+        $content->Attribute = "";
+        $content->RedirectURL = "";
+        $content->StaticFileName = "";
+        $content->Status = "";
+        $content->TopFlag = "";
+        $content->TopDate = "";
+        $content->TemplateFlag = "";
+        $content->Template = "";
+        $content->OrderFlag = "";
+        $content->ReferName = "";
+        $content->ReferURL = "";
+        $content->Keyword = "";
+        $content->RelativeContent = "";
+        $content->RecommendBlock = "";
+        $content->CopyType = "";
+        $content->CopyID = "";
+        $content->HitCount = "";
+        $content->StickTime = "";
+        $content->PublishFlag = "";
+        $content->Priority = "";
+        $content->LockUser = "";
+        $content->PublishDate = "";
+        $content->DownlineDate = "";
+        $content->ArchiveDate = "";
+        $content->LogoFile = "";
+        $content->Tag = "";
+        $content->Source = "";
+        $content->Weight = "";
+        $content->ClusterSource = "";
+        $content->ClusterTarget = "";
+        $content->ContributeFlag = "";
+        $content->ContributeUID = "";
+        $content->ConfigProps = "";
+        $content->Prop1 = "";
+        $content->Prop2 = "";
+        $content->Prop3 = "";
+        $content->Prop4 = "";
+        $content->AddUser = "";
+        $content->AddTime = "";
+        $content->ModifyUser = "";
+        $content->ModifyTime = "";
+        $content->TopCatalog = "";
+        $content->IsLock = "";
+        $content->SourceURL = "";
+        $content->PlatformAttribute = "";
+        $content->SourceTitle = "";
+    }
+
+    /**
+     * @param $input
+     * @return Zcarticlebodymodel
+     * newArticle
+     */
+    private function newArticleBody($body){
+        $article = new Zcarticlebodymodel();
+        $article->BodyText = $body["content"];
+        $article->save();
+        return $article;
+    }
+
+    /**
+     * @param $catalogName
+     * 根据获取名称栏目信息
+     */
+    private function getCatalogByName($catalogName){
+        $catalog = Zccatalogmodel::where("SiteID",14)
+            ->where("name",$catalogName)
+            ->first();
+        return $catalog;
     }
 
     /**
@@ -159,8 +355,8 @@ class Api extends MY_Controller{
         return array(
             array(
                 'field' => 'item_type',
-                'label' => 'item_typeitem_type',
-                'rules' => 'trim|integer',
+                'label' => 'item_type',
+                'rules' => 'trim|integer|in_list[0,1,1001,2,2001,3]',
             ),
             array(
                 'field' => 'item_id',
